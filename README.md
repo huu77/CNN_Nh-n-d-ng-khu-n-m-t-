@@ -1,4 +1,4 @@
-# CNN_Nh-n-d-ng-khu-n-m-t-
+# CNN_Nhận diện khuôn mặt
 bạn tạo forder mới xong thì thay đổi cái này 
 label_dict = {'huu': [1,0], 'mask': [0,1]}
 # lưu ý :
