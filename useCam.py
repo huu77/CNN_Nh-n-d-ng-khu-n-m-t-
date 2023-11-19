@@ -10,8 +10,8 @@ model = load_model('trained_model.keras')
 face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Open the video capture
-# cam = cv2.VideoCapture(0) # this is using for camera 
-cam = cv2.VideoCapture('video.mp4')
+cam = cv2.VideoCapture(0) # this is using for camera 
+# cam = cv2.VideoCapture('video.mp4')
 
 while True:
     # Read a frame from the video
@@ -22,7 +22,7 @@ while True:
 
     for (x, y, w, h) in faces:
         roi = cv2.resize(frame[y:y+h, x:x+w], (32, 32))
-        result = np.argmax(model.predict(roi.reshape((-1, 32, 32, 1))))
+        result = np.argmax(model.predict(roi.reshape((-1, 32, 32, 3))))
 
         cv2.rectangle(frame, (x, y), (x+w, y+h), (125, 255, 144), 1)
         cv2.putText(frame,label[result],(x,y),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,40,255),2)

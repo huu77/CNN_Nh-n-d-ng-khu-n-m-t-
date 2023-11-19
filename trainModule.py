@@ -20,7 +20,7 @@ def getData(path, X_TRAIN):
             fileName_path = os.path.join(whatever_path, filename)
             label = fileName_path.split('\\')[1]
 
-            image = cv2.imread(fileName_path, cv2.IMREAD_GRAYSCALE)
+            image = cv2.imread(fileName_path, cv2.IMREAD_COLOR)
             # Resize the image to (32, 32)
             image = cv2.resize(image, (32, 32))
             lst_filename_path.append((image, label_dict[label]))
@@ -43,7 +43,7 @@ Y = np.array([x[1] for x in X_data])
 # Xây dựng mô hình
 model_training_first = models.Sequential()
 
-model_training_first.add(layers.Conv2D(32, (3, 3), input_shape=(32, 32, 1), activation='relu'))
+model_training_first.add(layers.Conv2D(32, (3, 3), input_shape=(32, 32, 3), activation='relu'))
 model_training_first.add(layers.MaxPool2D((2, 2)))
 model_training_first.add(layers.Dropout(0.15))
 

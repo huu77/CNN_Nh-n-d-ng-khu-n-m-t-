@@ -28,8 +28,8 @@ while True:
         break
 
     img = cv2.flip(img, 1)  # Flip the video horizontally
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_detector.detectMultiScale(gray, 1.3, 5)
+    
+    faces = face_detector.detectMultiScale(img, 1.3, 5)
 
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
@@ -37,7 +37,7 @@ while True:
 
         # Save the captured face image in the user's directory with a unique filename
         face_image_path = os.path.join(user_directory, f"{count}.jpg")
-        cv2.imwrite(face_image_path, gray[y:y + h, x:x + w])
+        cv2.imwrite(face_image_path, img[y:y + h, x:x + w])
 
         cv2.imshow('Image', img)
 
